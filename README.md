@@ -257,7 +257,7 @@ rewritten later.
 
 ## 11. Getting your own live, persistent instance (one click)
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jordanhanna672-dev/YOUR-REPO)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jordanhanna672-dev/workwise-ai-final)
 
 > Replace `YOUR-USERNAME/YOUR-REPO` above once this is pushed to GitHub,
 > the same way the CI badge at the top of this file needs updating.
