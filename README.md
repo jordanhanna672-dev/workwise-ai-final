@@ -1,6 +1,6 @@
 # WorkWise AI
 
-[![CI/CD](https://github.com/jordanhanna672-dev/YOUR-REPO/actions/workflows/ci.yml/badge.svg)](https://github.com/jordanhanna672-dev/YOUR-REPO/actions/workflows/ci.yml)
+[![CI/CD](https://github.com/jordanhanna672-dev/workwise-ai-final/actions/workflows/ci.yml/badge.svg)](https://github.com/jordanhanna672-dev/workwise-ai-final/actions/workflows/ci.yml)
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![Coverage](https://img.shields.io/badge/coverage-84%25-brightgreen)
 
