@@ -1,0 +1,27 @@
+{
+  "name": "workwise-ai",
+  "version": "1.0.0",
+  "description": "WorkWise AI - an intelligent workplace assistant that consolidates tasks from emails, messages, and calendars into one prioritized dashboard, with AI-assisted deadline detection and subtask breakdown under mandatory human review.",
+  "main": "server.js",
+  "type": "commonjs",
+  "contributors": [
+    "Jordan Hanna (Lead Architect)",
+    "Ti'Asia Gause (Interface Designer)",
+    "Cal Reed (Integration Lead)"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "start:with-ai": "node --env-file=.env server.js",
+    "test": "node --test",
+    "test:coverage": "node --test --experimental-test-coverage",
+    "lint": "node scripts/lint.js",
+    "benchmark:accuracy": "node scripts/accuracy-benchmark.js",
+    "benchmark:performance": "node scripts/performance-benchmark.js",
+    "generate-key": "node scripts/generate-encryption-key.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}

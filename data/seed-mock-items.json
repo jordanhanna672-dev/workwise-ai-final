@@ -1,0 +1,252 @@
+[
+  {
+    "id": "seed-01",
+    "source": "email",
+    "raw_text": "Hi team, can you send over the Q3 report and the updated slide deck by Friday? Also loop in Priya on the final budget numbers before we send it out.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "Friday",
+      "min_subtasks": 2
+    }
+  },
+  {
+    "id": "seed-02",
+    "source": "chat",
+    "raw_text": "hey can u review my PR when u get a sec? no rush",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 0
+    }
+  },
+  {
+    "id": "seed-03",
+    "source": "calendar",
+    "raw_text": "Reminder: Quarterly All-Hands tomorrow at 10am. Please prepare a 2-minute update on your team's progress and submit your slide to the shared deck beforehand.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "tomorrow",
+      "min_subtasks": 2
+    }
+  },
+  {
+    "id": "seed-04",
+    "source": "email",
+    "raw_text": "The vendor contract needs to be reviewed, redlined, and sent back to legal by 2026-10-01. Please also cc Marcus on the reply.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "2026-10-01",
+      "min_subtasks": 3
+    }
+  },
+  {
+    "id": "seed-05",
+    "source": "chat",
+    "raw_text": "can you grab coffee later",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 0
+    }
+  },
+  {
+    "id": "seed-06",
+    "source": "email",
+    "raw_text": "Following up on the onboarding checklist for the new hire starting next week: 1) set up their laptop, 2) create accounts, 3) schedule a welcome lunch, 4) assign a buddy.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "next week",
+      "min_subtasks": 4
+    }
+  },
+  {
+    "id": "seed-07",
+    "source": "calendar",
+    "raw_text": "Design review moved to Wednesday. Please have your Figma files ready to share.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "Wednesday",
+      "min_subtasks": 1
+    }
+  },
+  {
+    "id": "seed-08",
+    "source": "chat",
+    "raw_text": "did you see the news about the merger",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 0
+    }
+  },
+  {
+    "id": "seed-09",
+    "source": "email",
+    "raw_text": "Please submit your expense report for the conference trip. Finance needs it by end of month to close the books.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "end of month",
+      "min_subtasks": 1
+    }
+  },
+  {
+    "id": "seed-10",
+    "source": "chat",
+    "raw_text": "can you send me the link to the shared drive and also the notes from yesterday's meeting",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 2
+    }
+  },
+  {
+    "id": "seed-11",
+    "source": "email",
+    "raw_text": "We need to migrate the staging database this weekend. Please back up the current data, run the migration script, and verify the app boots correctly before Monday.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "Monday",
+      "min_subtasks": 3
+    }
+  },
+  {
+    "id": "seed-12",
+    "source": "calendar",
+    "raw_text": "1:1 with manager today at 3pm. Bring your updated goals doc.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "today",
+      "min_subtasks": 1
+    }
+  },
+  {
+    "id": "seed-13",
+    "source": "email",
+    "raw_text": "Customer escalation: the client is reporting login failures. Please investigate the auth logs, identify root cause, and reply to the client with a status update by tomorrow morning.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "tomorrow",
+      "min_subtasks": 2
+    }
+  },
+  {
+    "id": "seed-14",
+    "source": "chat",
+    "raw_text": "lol did you see that typo in the release notes",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 0
+    }
+  },
+  {
+    "id": "seed-15",
+    "source": "email",
+    "raw_text": "Can you finalize the hiring rubric, share it with the panel, and schedule the interviews for next week?",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "next week",
+      "min_subtasks": 3
+    }
+  },
+  {
+    "id": "seed-16",
+    "source": "calendar",
+    "raw_text": "Sprint planning on Monday. Come with your estimates for the backlog items ready.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "Monday",
+      "min_subtasks": 1
+    }
+  },
+  {
+    "id": "seed-17",
+    "source": "chat",
+    "raw_text": "thanks for the help earlier, really appreciate it",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 0
+    }
+  },
+  {
+    "id": "seed-18",
+    "source": "email",
+    "raw_text": "Please prepare the board deck: pull last quarter's metrics, draft the narrative slides, and send it to me for review by 04/15.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "04/15",
+      "min_subtasks": 2
+    }
+  },
+  {
+    "id": "seed-19",
+    "source": "chat",
+    "raw_text": "quick q - is the api key supposed to start with sk-?",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 0
+    }
+  },
+  {
+    "id": "seed-20",
+    "source": "email",
+    "raw_text": "The security audit findings need remediation. Please patch the flagged dependencies, re-run the scanner, and confirm a clean report before Friday's compliance check-in.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "Friday",
+      "min_subtasks": 2
+    }
+  },
+  {
+    "id": "seed-21",
+    "source": "calendar",
+    "raw_text": "Client demo next Tuesday. Please have the staging environment stable and the demo script rehearsed.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "Tuesday",
+      "min_subtasks": 2
+    }
+  },
+  {
+    "id": "seed-22",
+    "source": "chat",
+    "raw_text": "haha that meeting could have been an email",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 0
+    }
+  },
+  {
+    "id": "seed-23",
+    "source": "email",
+    "raw_text": "Please draft the layoff communication, run it past legal, and get sign-off from HR before tonight.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "tonight",
+      "min_subtasks": 3
+    }
+  },
+  {
+    "id": "seed-24",
+    "source": "email",
+    "raw_text": "Reminder to renew the SSL certificate for the main site before it expires next week.",
+    "expected": {
+      "has_deadline": true,
+      "deadline_phrase": "next week",
+      "min_subtasks": 1
+    }
+  },
+  {
+    "id": "seed-25",
+    "source": "chat",
+    "raw_text": "can you also check if the invoice went through",
+    "expected": {
+      "has_deadline": false,
+      "deadline_phrase": null,
+      "min_subtasks": 0
+    }
+  }
+]

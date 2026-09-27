@@ -1,0 +1,86 @@
+[
+  {
+    "id": "style-01",
+    "category": "indirect_hedged",
+    "source": "email",
+    "raw_text": "I was wondering if maybe you might have a chance to take a look at the budget numbers sometime before Friday, if that's not too much trouble.",
+    "expected": { "has_deadline": true, "deadline_phrase": "before Friday", "min_subtasks": 0 }
+  },
+  {
+    "id": "style-02",
+    "category": "indirect_hedged",
+    "source": "chat",
+    "raw_text": "This isn't urgent or anything, but whenever you get a moment, it would be great if you could possibly review the draft and maybe send it back to me.",
+    "expected": { "has_deadline": false, "deadline_phrase": null, "min_subtasks": 0 }
+  },
+  {
+    "id": "style-03",
+    "category": "indirect_hedged",
+    "source": "email",
+    "raw_text": "I don't want to be a bother, but I was hoping we could possibly find some time to go over the contract, perhaps by end of week if that works for you.",
+    "expected": { "has_deadline": true, "deadline_phrase": "end of week", "min_subtasks": 0 }
+  },
+  {
+    "id": "style-04",
+    "category": "concise_direct",
+    "source": "chat",
+    "raw_text": "Report. Friday. Need slides too.",
+    "expected": { "has_deadline": true, "deadline_phrase": "Friday", "min_subtasks": 1 }
+  },
+  {
+    "id": "style-05",
+    "category": "concise_direct",
+    "source": "email",
+    "raw_text": "Send contract review by Wednesday. Also send invoice copy.",
+    "expected": { "has_deadline": true, "deadline_phrase": "Wednesday", "min_subtasks": 1 }
+  },
+  {
+    "id": "style-06",
+    "category": "concise_direct",
+    "source": "chat",
+    "raw_text": "budget numbers needed",
+    "expected": { "has_deadline": false, "deadline_phrase": null, "min_subtasks": 0 }
+  },
+  {
+    "id": "style-07",
+    "category": "non_native_pattern",
+    "source": "email",
+    "raw_text": "Please you can send report before Friday come, is very important for team meeting.",
+    "expected": { "has_deadline": true, "deadline_phrase": "before Friday", "min_subtasks": 0 }
+  },
+  {
+    "id": "style-08",
+    "category": "non_native_pattern",
+    "source": "chat",
+    "raw_text": "I am need help with slides, can finish by tomorrow if you have time please.",
+    "expected": { "has_deadline": true, "deadline_phrase": "tomorrow", "min_subtasks": 0 }
+  },
+  {
+    "id": "style-09",
+    "category": "non_native_pattern",
+    "source": "email",
+    "raw_text": "Team is waiting for the numbers from budget, please to send when is possible, not late than Monday.",
+    "expected": { "has_deadline": true, "deadline_phrase": "Monday", "min_subtasks": 0 }
+  },
+  {
+    "id": "style-10",
+    "category": "passive_impersonal",
+    "source": "email",
+    "raw_text": "The quarterly report needs to be finalized and submitted by Friday. The slides should also be updated.",
+    "expected": { "has_deadline": true, "deadline_phrase": "Friday", "min_subtasks": 1 }
+  },
+  {
+    "id": "style-11",
+    "category": "passive_impersonal",
+    "source": "chat",
+    "raw_text": "It would be appreciated if the vendor contract could be reviewed at some point.",
+    "expected": { "has_deadline": false, "deadline_phrase": null, "min_subtasks": 0 }
+  },
+  {
+    "id": "style-12",
+    "category": "passive_impersonal",
+    "source": "email",
+    "raw_text": "A decision on the budget is required from the team by end of month.",
+    "expected": { "has_deadline": true, "deadline_phrase": "end of month", "min_subtasks": 0 }
+  }
+]

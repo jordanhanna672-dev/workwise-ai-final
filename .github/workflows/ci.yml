@@ -1,0 +1,87 @@
+name: CI/CD
+
+# This file MUST live at .github/workflows/ci.yml for GitHub to see it.
+# See GETTING_STARTED_GITHUB.md for how to create the ".github" folder
+# on a Mac, since Finder hides/blocks folders that start with a dot.
+#
+# Pipeline stages: lint -> test (+coverage) -> accuracy/perf benchmarks
+# -> boot check -> package a deployable build artifact ("staging" stage).
+#
+# Note on the "staging" stage: this packages and uploads a deployable
+# build artifact via GitHub's own artifact storage, which is what CI can
+# do without any external hosting account or secrets. Wiring that
+# artifact to an actual always-on staging host (e.g. Render, Railway,
+# Fly.io) is a documented next step in README.md's "Deploying to a real
+# staging environment" section, since it requires an account and
+# secrets that belong to the team, not something this pipeline can set
+# up on its own.
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm ci || npm install
+
+      - name: Lint (syntax check)
+        run: npm run lint
+
+      - name: Run tests with coverage
+        run: npm run test:coverage | tee coverage-output.txt
+
+      - name: Run accuracy baseline benchmark
+        run: npm run benchmark:accuracy
+
+      - name: Run performance benchmark
+        run: npm run benchmark:performance
+
+      - name: Build check (server boots without crashing)
+        run: |
+          node server.js &
+          SERVER_PID=$!
+          sleep 2
+          curl -sf http://localhost:3000/ > /dev/null
+          curl -sf http://localhost:3000/api/tasks > /dev/null
+          kill $SERVER_PID
+
+      - name: Package deployable build artifact (staging stage)
+        run: |
+          mkdir -p dist
+          tar --exclude='./node_modules' --exclude='./dist' --exclude='./data/tasks.json' -czf dist/workwise-ai-build.tar.gz .
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: workwise-ai-staging-build
+          path: dist/workwise-ai-build.tar.gz
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage-output.txt
+
+      - name: Upload accuracy & performance reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-reports
+          path: |
+            docs/accuracy-baseline-report.md
+            docs/performance-benchmark-report.md

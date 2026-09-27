@@ -1,0 +1,50 @@
+[
+  {
+    "id": "holdout-01",
+    "source": "email",
+    "raw_text": "We need the client invoice sorted no later than next Thursday, otherwise we risk late fees.",
+    "expected": { "has_deadline": true, "deadline_phrase": "next Thursday", "min_subtasks": 1 }
+  },
+  {
+    "id": "holdout-02",
+    "source": "chat",
+    "raw_text": "can you take a look at this whenever, not urgent",
+    "expected": { "has_deadline": false, "deadline_phrase": null, "min_subtasks": 0 }
+  },
+  {
+    "id": "holdout-03",
+    "source": "email",
+    "raw_text": "Please respond to the customer within 48 hours, escalate to support if you can't reach them, and log the ticket outcome.",
+    "expected": { "has_deadline": true, "deadline_phrase": "within 48 hours", "min_subtasks": 3 }
+  },
+  {
+    "id": "holdout-04",
+    "source": "chat",
+    "raw_text": "need this back by close of business, sorry for the short notice",
+    "expected": { "has_deadline": true, "deadline_phrase": "close of business", "min_subtasks": 0 }
+  },
+  {
+    "id": "holdout-05",
+    "source": "email",
+    "raw_text": "The roadmap review is happening sometime this quarter. No firm date yet, just wanted to give you a heads up.",
+    "expected": { "has_deadline": false, "deadline_phrase": null, "min_subtasks": 0 }
+  },
+  {
+    "id": "holdout-06",
+    "source": "calendar",
+    "raw_text": "Retro pushed to Thursday afternoon. Bring your notes from the sprint.",
+    "expected": { "has_deadline": true, "deadline_phrase": "Thursday", "min_subtasks": 1 }
+  },
+  {
+    "id": "holdout-07",
+    "source": "email",
+    "raw_text": "Can you update the runbook, notify the on-call rotation, and archive the old incident doc before 03/20?",
+    "expected": { "has_deadline": true, "deadline_phrase": "03/20", "min_subtasks": 3 }
+  },
+  {
+    "id": "holdout-08",
+    "source": "chat",
+    "raw_text": "nice work on the launch yesterday, team",
+    "expected": { "has_deadline": false, "deadline_phrase": null, "min_subtasks": 0 }
+  }
+]

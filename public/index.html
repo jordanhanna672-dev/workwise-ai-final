@@ -1,0 +1,182 @@
+<!doctype html>
+<!--
+  WorkWise AI
+
+  Team:
+    Jordan Hanna   - Lead Architect
+    Ti'Asia Gause  - Interface Designer
+    Cal Reed       - Integration Lead
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WorkWise AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <h1 class="wordmark"><span class="dot" aria-hidden="true"></span>WorkWise&nbsp;AI <span class="badge">v1.0</span></h1>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="inbox">Inbox</button>
+      <button class="tab-btn" data-tab="dashboard">Prioritized Dashboard</button>
+      <button class="tab-btn" data-tab="about">About</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inbox" class="tab-panel active">
+      <h2>Paste a message to extract a task</h2>
+      <p class="hint">Simulates an incoming email, chat message, or calendar note. Nothing is saved until you approve it.</p>
+      <form id="ingest-form">
+        <label>
+          Source
+          <select id="ingest-source">
+            <option value="email">Email</option>
+            <option value="chat">Chat</option>
+            <option value="calendar">Calendar</option>
+          </select>
+        </label>
+        <textarea id="ingest-text" rows="6" placeholder="e.g. Hey, can you send the Q3 report and the updated slides by Friday? Also loop in Priya on the budget numbers."></textarea>
+        <button type="submit">Extract task with AI</button>
+      </form>
+
+      <div id="suggestion-area"></div>
+
+      <div id="google-sync" class="google-sync">
+        <h3>Or sync from Gmail / Calendar</h3>
+        <p id="google-sync-status" class="hint">Checking Google integration status…</p>
+        <button id="google-connect-btn" type="button" class="secondary" style="display:none;">Connect Google account</button>
+        <div id="google-sync-controls" style="display:none;">
+          <input id="google-search-input" type="search" placeholder="Search Gmail (e.g. invoice, project name, from:someone@example.com)…" class="task-search-input" />
+          <div class="google-sync-row">
+            <label>
+              Gmail category
+              <select id="google-category-select">
+                <option value="primary">Primary</option>
+                <option value="promotions">Promotions</option>
+                <option value="social">Social</option>
+                <option value="updates">Updates</option>
+                <option value="forums">Forums</option>
+                <option value="all">All (no filter)</option>
+              </select>
+            </label>
+            <button id="google-sync-btn" type="button" class="secondary">Sync recent items</button>
+          </div>
+        </div>
+        <div id="google-suggestions"></div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="tab-panel">
+      <h2>Prioritized tasks</h2>
+      <p class="hint">Highest priority first. Click a task to see why it was ranked there, or override it manually.</p>
+      <input id="task-search" type="search" placeholder="Search tasks by title, subtask, or source…" class="task-search-input" />
+      <div id="task-list"></div>
+    </section>
+
+    <section id="about" class="tab-panel">
+      <h2>About WorkWise AI</h2>
+      <p class="hint">Turns scattered emails, chat messages, and calendar events into one prioritized list — with AI suggesting deadlines and subtasks, and you approving everything before it's saved.</p>
+
+      <div class="about-block">
+        <h3>How it works</h3>
+        <div class="how-grid">
+          <div class="how-item">
+            <span class="how-index">01</span>
+            <div>
+              <h4>Extract</h4>
+              <p>Paste a message, or connect Gmail and Calendar. The Smart Task Extractor drafts a title, deadline, and subtasks.</p>
+            </div>
+          </div>
+          <div class="how-item">
+            <span class="how-index">02</span>
+            <div>
+              <h4>Approve</h4>
+              <p>Every suggestion shows its reasoning before you decide. Approve it and it joins your list; reject it and nothing is written anywhere.</p>
+            </div>
+          </div>
+          <div class="how-item">
+            <span class="how-index">03</span>
+            <div>
+              <h4>Prioritize</h4>
+              <p>Tasks are ranked by deadline urgency, source, and importance — three numbers you can see, combined the same way every time. Disagree? Override it manually.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-block">
+        <h3>Built plainly, on purpose</h3>
+        <div class="principle-grid">
+          <div class="principle-item">
+            <p><b>No account, no server, no telemetry.</b> Your tasks live in a file on your own machine.</p>
+          </div>
+          <div class="principle-item">
+            <p><b>Works fully offline.</b> Rule-based extraction needs no API key; add one only if you want a large language model instead.</p>
+          </div>
+          <div class="principle-item">
+            <p><b>Gmail and Calendar access is read-only.</b> WorkWise can't send an email or create an event on your behalf.</p>
+          </div>
+          <div class="principle-item">
+            <p><b>Optional encryption at rest.</b> Turn on AES-256 for the task file with one generated key, any time.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-block">
+        <h3>Who built this</h3>
+        <div class="team-grid">
+          <div class="principle-item">
+            <p><b>Jordan Hanna</b> — Lead Architect</p>
+          </div>
+          <div class="principle-item">
+            <p><b>Ti'Asia Gause</b> — Interface Designer</p>
+          </div>
+          <div class="principle-item">
+            <p><b>Cal Reed</b> — Integration Lead</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="version-footer">
+        <span>WorkWise AI <span class="fmono">v1.0.0</span></span>
+        <span>MIT licensed</span>
+        <span>Requires Node.js 18+</span>
+        <span>Zero required dependencies</span>
+      </div>
+      <p class="hint" style="margin-top: 0.6rem;">Full documentation — architecture, API reference, and the reasoning behind each design decision — lives in this project's <code>docs/</code> folder.</p>
+    </section>
+  </main>
+
+  <template id="task-card-template">
+    <article class="task-card">
+      <header>
+        <h3 class="task-title"></h3>
+        <span class="task-score"></span>
+      </header>
+      <p class="task-meta"></p>
+      <ul class="task-subtasks"></ul>
+      <details class="task-reasoning">
+        <summary>Why is this ranked here?</summary>
+        <ul></ul>
+      </details>
+      <details class="task-extraction-reasoning">
+        <summary>How was this task extracted?</summary>
+        <ul></ul>
+      </details>
+      <div class="task-actions">
+        <label>Override priority (0-100):
+          <input type="number" min="0" max="100" class="override-input" />
+        </label>
+        <button class="delete-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path></svg>Delete</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="/app.js"></script>
+</body>
+</html>

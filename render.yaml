@@ -1,0 +1,32 @@
+# Render Blueprint - powers the one-click "Deploy your own instance" flow.
+# See docs/deploying-to-render.md for what this actually does and how to
+# add optional features (OpenAI, Gmail/Calendar, encryption) afterward.
+#
+# Deliberately declares NO secret environment variables here (no
+# sync: false entries) - Render prompts for a value for every sync:false
+# var during initial Blueprint creation, which would turn "one click"
+# into "one click, then fill out a form." Only DATABASE_URL is wired
+# automatically (via fromDatabase, which needs no input from the person
+# deploying), so the very first deploy requires zero typed input beyond
+# whatever Render's own UI defaults ask for.
+
+databases:
+  - name: workwise-ai-db
+    plan: free
+
+services:
+  - type: web
+    name: workwise-ai
+    runtime: node
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: npm install && npm install pg --no-save
+    startCommand: npm start
+    autoDeploy: false
+    healthCheckPath: /api/tasks
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: workwise-ai-db
+          property: connectionString
