@@ -4,9 +4,6 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![Coverage](https://img.shields.io/badge/coverage-84%25-brightgreen)
 
-> Replace `YOUR-USERNAME/YOUR-REPO` in the badge URL above once this is
-> pushed to GitHub, so the badge actually links to your repo's Actions tab.
-
 An intelligent workplace assistant that consolidates tasks from emails,
 messages, and calendars into a single, prioritized dashboard — with AI
 suggesting deadlines and subtasks, and a human always approving before
@@ -258,9 +255,6 @@ rewritten later.
 ## 11. Getting your own live, persistent instance (one click)
 
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/jordanhanna672-dev/workwise-ai-final)
-
-> Replace `YOUR-USERNAME/YOUR-REPO` above once this is pushed to GitHub,
-> the same way the CI badge at the top of this file needs updating.
 
 Clicking this button gives you a free, private, persistent instance of
 WorkWise AI — no zip file, no terminal, no `npm install`. It uses the
