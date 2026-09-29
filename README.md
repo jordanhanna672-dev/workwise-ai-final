@@ -361,11 +361,3 @@ workwise-ai/
 ├── CHANGELOG.md
 └── package.json
 ```
-
----
-
-## 13. Putting this on GitHub
-
-See **GETTING_STARTED_GITHUB.md** in this same folder for step-by-step
-instructions, including how to create the `.github` folder on a Mac (Finder
-hides dot-folders, but Terminal and Git handle them just fine).
