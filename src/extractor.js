@@ -99,47 +99,56 @@ function guessDeadline(text, now = new Date()) {
       foundNegated = true;
       continue; // this match is being cancelled/withdrawn, not set - try other patterns
     }
+    // All date math below uses UTC-prefixed Date methods (getUTCDate,
+    // setUTCHours, etc.) deliberately, never the local-timezone versions
+    // (getDate, setHours, ...). Using local methods here is a real bug,
+    // not just a style choice: "11:59 PM" computed via setHours() means
+    // 11:59 PM in whatever timezone the machine running this code
+    // happens to be in, so the exact same message could resolve to a
+    // different stored instant on a server in Chicago vs. a laptop in
+    // New York. Using the UTC methods throughout makes the computed
+    // deadline identical no matter where this code runs.
     const d = new Date(now);
     if (pattern.type === 'today') {
-      d.setHours(23, 59, 0, 0);
+      d.setUTCHours(23, 59, 0, 0);
       return { deadline: d.toISOString(), matched: m[0], pattern: pattern.type };
     }
     if (pattern.type === 'tomorrow') {
-      d.setDate(d.getDate() + 1);
-      d.setHours(23, 59, 0, 0);
+      d.setUTCDate(d.getUTCDate() + 1);
+      d.setUTCHours(23, 59, 0, 0);
       return { deadline: d.toISOString(), matched: m[0], pattern: pattern.type };
     }
     if (pattern.type === 'next_week') {
-      d.setDate(d.getDate() + 7);
+      d.setUTCDate(d.getUTCDate() + 7);
       return { deadline: d.toISOString(), matched: m[0], pattern: pattern.type };
     }
     if (pattern.type === 'end_of_month') {
-      d.setMonth(d.getMonth() + 1, 0); // day 0 of next month = last day of this month
-      d.setHours(23, 59, 0, 0);
+      d.setUTCMonth(d.getUTCMonth() + 1, 0); // day 0 of next month = last day of this month
+      d.setUTCHours(23, 59, 0, 0);
       return { deadline: d.toISOString(), matched: m[0], pattern: pattern.type };
     }
     if (pattern.type === 'end_of_week') {
-      const diff = (5 - d.getDay() + 7) % 7 || 5; // treat "end of week" as this/next Friday
-      d.setDate(d.getDate() + diff);
-      d.setHours(23, 59, 0, 0);
+      const diff = (5 - d.getUTCDay() + 7) % 7 || 5; // treat "end of week" as this/next Friday
+      d.setUTCDate(d.getUTCDate() + diff);
+      d.setUTCHours(23, 59, 0, 0);
       return { deadline: d.toISOString(), matched: m[0], pattern: pattern.type };
     }
     if (pattern.type === 'weekday' || pattern.type === 'weekday_bare') {
       const target = WEEKDAYS.indexOf(m[1].toLowerCase());
-      const diff = (target - d.getDay() + 7) % 7 || 7;
-      d.setDate(d.getDate() + diff);
-      d.setHours(23, 59, 0, 0);
+      const diff = (target - d.getUTCDay() + 7) % 7 || 7;
+      d.setUTCDate(d.getUTCDate() + diff);
+      d.setUTCHours(23, 59, 0, 0);
       return { deadline: d.toISOString(), matched: m[0], pattern: pattern.type };
     }
     if (pattern.type === 'iso') {
       const [, y, mo, day] = m;
-      const parsed = new Date(Number(y), Number(mo) - 1, Number(day), 23, 59);
+      const parsed = new Date(Date.UTC(Number(y), Number(mo) - 1, Number(day), 23, 59));
       if (!isNaN(parsed)) return { deadline: parsed.toISOString(), matched: m[0], pattern: pattern.type };
     }
     if (pattern.type === 'mdy') {
       const [, mo, day, yr] = m;
-      const year = yr ? (yr.length === 2 ? 2000 + Number(yr) : Number(yr)) : now.getFullYear();
-      const parsed = new Date(year, Number(mo) - 1, Number(day), 23, 59);
+      const year = yr ? (yr.length === 2 ? 2000 + Number(yr) : Number(yr)) : now.getUTCFullYear();
+      const parsed = new Date(Date.UTC(year, Number(mo) - 1, Number(day), 23, 59));
       if (!isNaN(parsed)) return { deadline: parsed.toISOString(), matched: m[0], pattern: pattern.type };
     }
   }

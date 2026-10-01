@@ -61,8 +61,13 @@ function parseCalendarEvents(events) {
       if (e.start && e.start.dateTime) {
         knownDeadlineIso = new Date(e.start.dateTime).toISOString();
       } else if (e.start && e.start.date) {
-        // All-day event: treat end-of-that-day as the effective deadline.
-        knownDeadlineIso = new Date(`${e.start.date}T23:59:00`).toISOString();
+        // All-day event: treat end-of-that-day (UTC) as the effective
+        // deadline. The explicit "Z" suffix matters here - without it,
+        // the Date constructor parses this as local time, meaning the
+        // exact same calendar event would produce a different stored
+        // instant depending on which timezone the server happens to be
+        // running in. Appending "Z" makes this deterministic everywhere.
+        knownDeadlineIso = new Date(`${e.start.date}T23:59:00Z`).toISOString();
       }
       return { raw_text: text, source: 'calendar', knownDeadlineIso };
     });

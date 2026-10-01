@@ -1,6 +1,6 @@
 # Communication-Style Accuracy Report
 
-Generated: 2026-09-20T21:51:17.511Z
+Generated: 2026-10-01T17:26:15.764Z
 Mode: **heuristic**
 Dataset: `data/communication-style-items.json` (12 items across 4 phrasing categories)
 

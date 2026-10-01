@@ -90,6 +90,21 @@ depth, security, performance evidence, and full documentation.
   working agreement and individual contribution log templates
 
 ### Fixed
+- **Real bug found via testing on a non-UTC machine, not caught in this
+  project's own CI (which runs in UTC)**: `guessDeadline`'s date math
+  used local-timezone Date methods (`getDate`, `setHours`, etc.)
+  throughout, meaning the exact same message could resolve to a
+  different stored deadline depending on which timezone the machine
+  running the code happened to be in — e.g. "by end of month" computed
+  on a UTC-4 machine could land on the wrong UTC calendar day entirely.
+  Rewrote every branch to use UTC-safe equivalents
+  (`getUTCDate`/`setUTCHours`/`Date.UTC`/etc.) so the computed deadline
+  is now identical regardless of server or developer timezone. The
+  same bug class was also found and fixed in
+  `src/google/calendarClient.js`'s all-day-event handling. Verified
+  against the originally-failing timezone (America/New_York) plus
+  several extreme offsets (UTC+14, UTC-11, UTC+5:45) with all 64 tests
+  passing in each
 - Deadline detection now recognizes bare weekday mentions ("moved to
   Wednesday"), "end of month" / "end of week" phrasing, and no longer
   under-splits non-Oxford-comma lists ("do X, do Y, and do Z") or inline

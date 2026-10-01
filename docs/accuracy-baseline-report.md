@@ -1,6 +1,6 @@
 # Smart Task Extractor — Accuracy Baseline Report
 
-Generated: 2026-09-20T21:51:17.511Z
+Generated: 2026-10-01T17:26:15.764Z
 Mode: **heuristic** (heuristic = no OPENAI_API_KEY set; llm = real API call)
 
 This report scores two separate datasets:
@@ -17,7 +17,7 @@ See also [communication-style-accuracy-report.md](./communication-style-accuracy
 | Deadline detection accuracy | **100.0%** (25/25) |
 | Subtask-count accuracy | **100.0%** (25/25) |
 | Both correct | **100.0%** |
-| Run time | 6ms (0.2ms/item) |
+| Run time | 5ms (0.2ms/item) |
 
 ### Tuning set failures
 None — every item in this set passed both checks.

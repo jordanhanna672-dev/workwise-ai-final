@@ -64,7 +64,7 @@ test('parseCalendarEvents uses the event start.dateTime as an exact known deadli
 test('parseCalendarEvents treats an all-day event\'s date as end-of-day', () => {
   const mockEvents = [{ id: 'evt2', summary: 'Company holiday', start: { date: '2026-11-26' } }];
   const items = parseCalendarEvents(mockEvents);
-  assert.equal(items[0].knownDeadlineIso, new Date('2026-11-26T23:59:00').toISOString());
+  assert.equal(items[0].knownDeadlineIso, '2026-11-26T23:59:00.000Z');
 });
 
 test('parseCalendarEvents skips events with no summary', () => {

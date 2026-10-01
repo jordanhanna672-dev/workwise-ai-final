@@ -1,6 +1,6 @@
 # Performance Benchmark Report
 
-Generated: 2026-09-20T21:51:17.717Z
+Generated: 2026-10-01T17:26:15.977Z
 AI extraction mode during this run: **heuristic**
 Samples per measurement: 20
 Environment: single local instance, no concurrent load (see "Limitations" below)
@@ -9,21 +9,21 @@ Environment: single local instance, no concurrent load (see "Limitations" below)
 
 | Stat | ms |
 |---|---|
-| Min | 0.33 |
-| Avg | 1.53 |
-| p50 | 0.57 |
-| p95 | 17.13 |
-| Max | 17.13 |
+| Min | 0.30 |
+| Avg | 1.61 |
+| p50 | 0.55 |
+| p95 | 19.41 |
+| Max | 19.41 |
 
 ## POST /api/ingest (AI extraction latency)
 
 | Stat | ms |
 |---|---|
-| Min | 0.40 |
-| Avg | 0.86 |
-| p50 | 0.56 |
-| p95 | 3.16 |
-| Max | 3.16 |
+| Min | 0.39 |
+| Avg | 0.84 |
+| p50 | 0.58 |
+| p95 | 3.14 |
+| Max | 3.14 |
 
 ## Reading these numbers
 
