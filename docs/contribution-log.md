@@ -34,6 +34,7 @@ Section 1 "specific examples from your codebase" requirement.]`
 
 **Summary of contribution (2–4 sentences):**
 I managed the API and component interface documentation for WorkWise AI, documenting how the user-facing application connects with task storage, Smart Task Extraction, and task prioritization. I also reviewed the task-list API description for accuracy and refined it before the documentation was merged through Pull Request #2. This work supported my assigned role as Interface Designer by making the system's API and data interfaces clear and consistent for team integration.
+
 ---
 
 ## Cal Reed — Integration Lead
