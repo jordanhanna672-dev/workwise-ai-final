@@ -169,8 +169,21 @@ npm run lint
 
 By default the "Smart Task Extractor" uses built-in keyword and date-pattern
 rules — no API key, no internet call, no cost, and it's what makes this app
-runnable by anyone instantly. If you'd like it to use a real large language
-model instead:
+runnable by anyone instantly.
+
+**Getting an API Key:**
+
+1. **Get an API key:** Go to platform.openai.com/api-keys (not chatgpt.com — that's the developer/billing side). Click 'Create new secret key' and copy it immediately — it's only shown once. 
+
+2. **Make sure billing is set up:** Go to platform.openai.com/settings/organization/billing and add a payment method. This is separate from any ChatGPT subscription — API usage is billed independently, and a key with no billing on file will authenticate but every request will fail. 
+
+3. **Add the key to .env:** Open .env (create it from .env.example if you haven't) and set: OPENAI_API_KEY=sk-yourkeyhere — no quotes, no spaces. You can also do this in Render’s environment variables for the web service.  
+
+4. **Start with the AI-enabled script:** Run npm run start:with-ai, not npm start — the plain start script never reads .env, which is the most common reason people think their key "isn't working" when it's actually just never being loaded. 
+
+5. **Confirm it's working:** Paste a message into the Inbox tab and extract a task. The suggestion card will show 'mode: llm' if it's actually using the API, or 'mode: heuristic' if it silently fell back (check the terminal/reasoning log for why, if so).
+
+**Now:**
 
 1. Copy `.env.example` to a new file named `.env`.
 2. Put your OpenAI API key after `OPENAI_API_KEY=`.
@@ -210,6 +223,21 @@ scopes only and no SDK dependency (just Node's built-in `fetch`). It's
 entirely off by default — see
 [docs/google-integration.md](./docs/google-integration.md) for full setup
 (Google Cloud project, OAuth consent screen, and connecting an account).
+
+**Here are some of the steps:**
+
+1. **Create a Google Cloud project and enable the APIs:** Go to console.cloud.google.com and create a new project (or reuse one). Under APIs & Services → Library, search for and enable both the Gmail API and the Google Calendar API. 
+
+2. **Set up the OAuth consent screen:** Look for 'Google Auth Platform' in the left sidebar. Under the Audience tab, set it to External, then scroll to Test users and add your own Google email. This keeps you in Testing mode, skipping Google's full app-review process. 
+
+3. **Add the two read-only scopes:** Still in Google Auth Platform, click the Data Access tab → Add or remove scopes. Add both: https://www.googleapis.com/auth/gmail.readonly and https://www.googleapis.com/auth/calendar.readonly. These show as 'sensitive' scopes — expected and fine in Testing mode. 
+
+4. **Create OAuth credentials:** Go to the Clients tab (or APIs & Services → Credentials on the older layout) → Create Client → Application type: Web application. Under Authorized redirect URIs, add http://localhost:3000/oauth2callback (adjust the port if you run on a different one). 
+
+5. **Copy the Client ID and Client Secret:** Click Create and copy both values immediately — the secret is only shown once. 
+
+6. **Add the values to .env:** Copy .env.example to .env if you haven't already (cp .env.example .env), then fill in: GOOGLE_CLIENT_ID=..., GOOGLE_CLIENT_SECRET=..., and leave GOOGLE_REDIRECT_URI blank (it defaults to the localhost URL above). 
+Start the app and connect: Run npm run start:with-ai (this is the script that actually reads .env). Open the Inbox tab, click 'Connect Google account' under the sync section, and approve the consent screen.
 
 ---
 
@@ -280,6 +308,22 @@ experience as running it locally with no `.env` file.
 - **Encryption at rest**: run `node scripts/generate-encryption-key.js`
   locally once, then add the printed `DATA_ENCRYPTION_KEY` value in
   Render's dashboard.
+
+**Here are the steps:**
+
+1. **Click the Deploy to Render button:** Click the 'Deploy to Render' badge/button in your README (or go to dashboard.render.com and choose New → Blueprint, then point it at your repo).
+
+2. **Sign in to Render:** Pick Google, GitHub, GitLab, Bitbucket, or email — any of these works fine.
+
+3. **Connect GitHub if prompted:** If Render doesn't already have access to your GitHub account, it'll prompt you to connect it separately — this is required so Render can actually read and deploy the repo, distinct from just signing in. 
+
+4. **Review and confirm the Blueprint:** Render reads render.yaml and shows a preview: one Web Service (the app) and one PostgreSQL database, already wired together via DATABASE_URL. Confirm it.
+
+5. **Wait for the build and deploy:** First-time deploys usually take 2–5 minutes — installing dependencies, provisioning the database, connecting the two. Check the Logs tab on the web service if you want to watch it happen.
+
+6. **Add OpenAI / Google / encryption afterward:** The app works immediately in heuristic mode with zero configuration. For OpenAI, Google integration, or encryption, add those as environment variables afterward on the web service specifically (not the database) — see the steps from my last message, using your live Render URL instead of localhost for the Google redirect URI.
+
+7. **Find your live URL:** Open the 'workwise-ai' web service from your dashboard — the URL (https://workwise-ai-xxxx.onrender.com) appears near the top once the deploy finishes successfully.
 
 These aren't included in the Blueprint itself on purpose — Render
 prompts for a value for every secret declared there during setup, which
