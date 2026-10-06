@@ -1,6 +1,5 @@
 # Smart Task Extractor — Accuracy Baseline Report
 
-Generated: 2026-10-01T17:26:15.764Z
 Mode: **heuristic** (heuristic = no OPENAI_API_KEY set; llm = real API call)
 
 This report scores two separate datasets:
