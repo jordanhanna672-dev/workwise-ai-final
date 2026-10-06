@@ -18,6 +18,7 @@ Commits that are visible are edits mostly in documentation as this entire projec
 - All six ADRs (0001-0006) (docs/adr/0001-0006)
 - docs/accuracy-baseline-report.md
 - docs/performance-benchmark-report.md
+- docs/architecture.md
 - src/security.js
 
 **Summary of contribution:**
