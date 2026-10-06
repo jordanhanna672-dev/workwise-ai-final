@@ -1,6 +1,5 @@
 # Performance Benchmark Report
 
-Generated: 2026-10-01T17:26:15.977Z
 AI extraction mode during this run: **heuristic**
 Samples per measurement: 20
 Environment: single local instance, no concurrent load (see "Limitations" below)
